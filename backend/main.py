@@ -63,15 +63,29 @@ def verify_user(authorization: str | None = Header(default=None)):
     """When REQUIRE_AUTH=true, verify the Firebase ID token sent as 'Authorization: Bearer <token>'."""
     if not REQUIRE_AUTH:
         return None
+
     if not authorization or not authorization.lower().startswith("bearer "):
         raise HTTPException(401, "Sign in required.")
+
     try:
         import firebase_admin
-        from firebase_admin import auth as fb_auth
+        from firebase_admin import auth as fb_auth, credentials
+
         if not firebase_admin._apps:
-            firebase_admin.initialize_app()  # uses GOOGLE_APPLICATION_CREDENTIALS / workload identity
-        return fb_auth.verify_id_token(authorization.split(" ", 1)[1])
+            service_account_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+
+            if service_account_json:
+                service_account_info = json.loads(service_account_json)
+                cred = credentials.Certificate(service_account_info)
+                firebase_admin.initialize_app(cred)
+            else:
+                firebase_admin.initialize_app()
+
+        token = authorization.split(" ", 1)[1]
+        return fb_auth.verify_id_token(token)
+
     except Exception:
+        log.exception("Firebase authentication failed")
         raise HTTPException(401, "Invalid or expired sign-in token.")
 
 
