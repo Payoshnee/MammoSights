@@ -1,0 +1,31 @@
+@import "leaflet/dist/leaflet.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-ink text-cream font-sans antialiased; }
+::selection { background: rgba(197,46,91,.18); }
+
+:focus-visible { outline: 2px solid #a60f3c; outline-offset: 3px; border-radius: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-rose-deep text-white shadow-soft hover:-translate-y-0.5 hover:bg-rose; }
+  .btn-ghost { @apply btn border border-rose-deep/20 bg-white/60 text-rose-deep hover:border-rose-deep/40 hover:bg-white; }
+  .card { @apply rounded-xl2 border border-rose-deep/10 bg-white/80 shadow-soft backdrop-blur-sm; }
+  .field { @apply w-full rounded-xl border border-rose-deep/15 bg-white px-4 py-3 text-cream placeholder:text-cream-dim focus:border-rose-deep focus:ring-2 focus:ring-rose/10; }
+  .label { @apply mb-1.5 block text-sm font-medium text-cream-muted; }
+  .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+}
+.font-display {
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}

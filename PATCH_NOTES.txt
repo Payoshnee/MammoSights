@@ -1,0 +1,22 @@
+MammoSights visual refresh patch
+
+Replace only the files included in this patch.
+Do NOT replace your current frontend/app/find-care/page.tsx, frontend/app/api/*, or frontend/components/CareMap.tsx; those contain your working OpenStreetMap/Leaflet implementation.
+
+After copying the patch, make these two tiny edits in your CURRENT Find Care files:
+1) In frontend/app/find-care/page.tsx replace visible text "MammoSense" with "MammoSights" if it still appears.
+2) In frontend/app/api/nearby-care/route.ts and geocode/route.ts you may change the User-Agent label from MammoSense/1.0 to MammoSights/1.0. This is optional and does not affect behavior.
+
+IMPORTANT: Do NOT rename your Firebase project ID, authDomain, service account, backend folder, model files, or environment-variable values. The public brand can be MammoSights while the existing Firebase project remains mammosense internally.
+
+Then restart frontend:
+  Ctrl+C
+  npm run dev
+
+Check:
+  /           home
+  /login      sign-in/sign-up
+  /dashboard  logged-in layout
+  /analyse    upload
+  /result     prediction/expert view
+  /find-care  OpenStreetMap care search

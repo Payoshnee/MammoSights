@@ -1,0 +1,12 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+python-dotenv>=1.0
+tensorflow-cpu>=2.16
+scikit-learn==1.6.1   # must match the version that saved pipeline.joblib (mammo_core reads svc._gamma)
+opencv-python-headless
+numpy
+pillow
+joblib
+# Optional: only needed when REQUIRE_AUTH=true (server-side Firebase ID-token verification)
+firebase-admin>=6.5

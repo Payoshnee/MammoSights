@@ -1,0 +1,9 @@
+node_modules
+.next
+.env
+.env.local
+next-env.d.ts
+*.tsbuildinfo
+backend/firebase-service-account.json
+backend/.env
+frontend/.env.local

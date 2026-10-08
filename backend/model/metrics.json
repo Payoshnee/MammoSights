@@ -1,0 +1,31 @@
+{
+  "n_train": 801,
+  "n_test": 201,
+  "positive_class": "Cancer",
+  "test": {
+    "accuracy": 0.9751243781094527,
+    "sensitivity_cancer": 0.97,
+    "specificity": 0.9801980198019802,
+    "auc": 0.9963366336633663,
+    "confusion": {
+      "TN": 99,
+      "FP": 2,
+      "FN_missed_cancers": 3,
+      "TP": 97
+    }
+  },
+  "cv5_on_train": {
+    "accuracy": [
+      0.9600621118012421,
+      0.014535239780566717
+    ],
+    "sensitivity_cancer": [
+      0.9426851851851852,
+      0.020153304759511957
+    ],
+    "auc": [
+      0.9869066358024693,
+      0.010644483344556227
+    ]
+  }
+}
